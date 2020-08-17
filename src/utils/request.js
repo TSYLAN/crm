@@ -11,6 +11,7 @@ const service = axios.create({
 })
 
 // request interceptor
+//拦截请求
 service.interceptors.request.use(
   config => {
     // do something before request is sent

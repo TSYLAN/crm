@@ -40,9 +40,7 @@
           <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
         </span>
       </el-form-item>
-
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
-
       <div class="tips">
         <span style="margin-right:20px;">username: admin</span>
         <span> password: any</span>
@@ -120,6 +118,9 @@ export default {
           return false
         }
       })
+    },
+    getusermessage(){
+      //获取后台数据，然后存入cookie；
     }
   }
 }

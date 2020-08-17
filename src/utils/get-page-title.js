@@ -8,3 +8,4 @@ export default function getPageTitle(pageTitle) {
   }
   return `${title}`
 }
+//设置标题

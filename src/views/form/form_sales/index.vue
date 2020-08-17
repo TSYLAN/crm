@@ -1,5 +1,5 @@
 <template>
-  <div class="remind">
+  <div class="from_sales">
     <el-table :data="tableData" border style="width: 100%">
       <el-table-column prop="date" label="日期" width="180"></el-table-column>
       <el-table-column prop="name" label="合同到期" width="180"></el-table-column>

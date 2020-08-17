@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div class="product_list">
     <div class="payback">
-      <h3 v-if="screenWidth>=800?true:false">合同管理</h3>
+      <h3 v-if="screenWidth>=800?true:false">产品列表</h3>
       <div>
-        <el-input placeholder="请输入合同编号" prefix-icon="el-icon-search" v-model="input2"></el-input>
+        <el-input placeholder="请输入产品名称" prefix-icon="el-icon-search" v-model="input2"></el-input>
       </div>
-      <el-button type="primary">新建合同</el-button>
+      <el-button type="primary">新建产品</el-button>
     </div>
     
     <el-table
@@ -31,9 +31,10 @@
       <el-table-column sortable prop="update_time" label="更新时间" width="200"></el-table-column>
       <el-table-column sortable prop="create_time" label="创建时间" width="200"></el-table-column>
       <el-table-column sortable prop="principal" label="负责人" width="140"></el-table-column>
-      <el-table-column fixed="right" label="状态" width="100">
+      <el-table-column fixed="right" label="状态" width="150">
         <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="primary" size="small">待审核</el-button>
+          <el-button @click="handleClick(scope.row)" type="primary" size="small">编辑</el-button>
+          <el-button @click="handleClick(scope.row)" type="primary" size="small">删除</el-button>
           <!-- <el-button
           size="mini"
           type="danger"
@@ -271,6 +272,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.product_list{
+  margin: 0 20px 0 20px;
+}
 .payback {
   height: 70px;
   display: flex;

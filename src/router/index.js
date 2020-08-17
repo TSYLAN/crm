@@ -1,10 +1,10 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from "vue";
+import Router from "vue-router";
 
-Vue.use(Router)
+Vue.use(Router);
 
 /* Layout */
-import Layout from '@/layout'
+import Layout from "@/layout";
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -30,166 +30,190 @@ import Layout from '@/layout'
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
+
+// 工作台
 export const constantRoutes = [
   {
-    path: '/login',
-    component: () => import('@/views/login/index'),
+    path: "/login",
+    component: () => import("@/views/login/index"),
     hidden: true
   },
 
   {
-    path: '/404',
-    component: () => import('@/views/404'),
+    path: "/404",
+    component: () => import("@/views/404"),
     hidden: true
   },
-
   {
-    path: '/',
+    path: "/",
     component: Layout,
-    redirect: '/dashboard',
-    meta: { title: "工作台", icon: "dashboard" },
-    children: [{
-      path: 'presentations',
-      name: 'Presentations',
-      component: () => import('@/views/dashboard/presentations'),
-      meta: { title: 'Presentations', icon: 'dashboard' },
-      children:[
-        {
-          path: 'deal',
-          name: 'deal',
-          component: () => import('@/views/dashboard/presentations/deal'),
-          meta: { title: 'Presentations', icon: 'dashboard' }
-        }
-      ],
-    }]
-  },
-
-  {
-    path: '/example',
-    component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
+    redirect: "/presentations",
+    meta: { title: "工作台", icon: "el-icon-s-operation" },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path: "presentations",
+        name: "Presentations",
+        component: () => import("@/views/dashboard/presentations"),
+        meta: { title: "销售简报", icon: "el-icon-s-order" },
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
-      }
-    ]
-  },
-
-  {
-    path: '/form',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
-      }
-    ]
-  }
-]
-
-/**
- * asyncRoutes
- * the routes that need to be dynamically loaded based on user roles
- */
-export const asyncRoutes = [
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: 'nested'
-    },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
+        path: "approval",
+        name: "Approval",
+        component: () => import("@/views/dashboard/approval"),
+        meta: { title: "审批中心", icon: "el-icon-menu" }
       },
       {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        meta: { title: 'menu2' }
+        path: "task",
+        name: "Task",
+        component: () => import("@/views/dashboard/task"),
+        meta: { title: "销售任务", icon: "el-icon-s-release" }
+      },
+      {
+        path: "performance",
+        name: "Performance",
+        component: () => import("@/views/dashboard/performance"),
+        meta: { title: "业绩排行", icon: "el-icon-s-data" }
+      },
+      {
+        path: "remind",
+        name: "Remind",
+        component: () => import("@/views/dashboard/remind"),
+        meta: { title: "工作提醒", icon: "el-icon-message-solid" }
+      },
+      {
+        path: "notice",
+        name: "Notice",
+        component: () => import("@/views/dashboard/notice"),
+        meta: { title: "公告栏", icon: "el-icon-s-unfold" }
       }
     ]
   },
-
+  // 客户管理
   {
-    path: 'external-link',
+    path: "/client",
     component: Layout,
+    redirect: "/client/client_message",
+    meta: { title: "客户管理", icon: "el-icon-s-check" },
     children: [
       {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
+        path: "client_message",
+        name: "Client_message",
+        component: () => import("@/views/client/client_message"),
+        meta: { title: "客户信息", icon: "el-icon-s-custom" }
+        
+      },
+      {
+        path: "client_add",
+        name: "Client_add",
+        component: () => import("@/views/client/client_add"),
+        meta: { title: "新增客户", icon: "table" }
+      },
+      {
+        path: "client_visit",
+        name: "Client_visit",
+        component: () => import("@/views/client/client_visit"),
+        meta: { title: "客户拜访", icon: "tree" }
       }
     ]
   },
-
+//服务管理
+  {
+    path: "/service",
+    component: Layout,
+    redirect: "/service/service_contract",
+    meta:{title:"服务管理",icon:"el-icon-s-unfold"},
+    children: [
+      {
+        path: "service_contract",
+        name: "Service_contract",
+        component: () => import("@/views/service/service_contract"),
+        meta: { title: "合同管理", icon: "form" }
+      },
+      {
+        path: "service_payback",
+        name: "Service_payback",
+        component: () => import("@/views/service/service_payback"),
+        meta: { title: "回款", icon: "el-icon-s-marketing" }
+      }
+    ]
+  },
+  //产品中心
+  {
+    path: "/product",
+    component: Layout,
+    redirect: "/product/product_category",
+    meta:{title:"产品中⼼",icon:"el-icon-s-grid"},
+    children: [
+      {
+        path: "product_category",
+        name: "Product_category",
+        component: () => import("@/views/product/product_category"),
+        meta: { title: "产品分类", icon: "el-icon-s-fold" }
+      },
+      {
+        path: "product_list",
+        name: "Product_list",
+        component: () => import("@/views/product/product_list"),
+        meta: { title: "产品列表", icon: "el-icon-s-finance" }
+      }
+    ]
+  },
+  {
+    path: "/form",
+    component: Layout,
+    redirect: "/form/form_followup",
+    meta:{title:"报表中心",icon:"form"},
+    children: [
+      {
+        path: "form_followup",
+        name: "Form_followup",
+        component: () => import("@/views/form/form_followup"),
+        meta: { title: "跟进记录", icon: "el-icon-s-management" }
+      },
+      {
+        path: "form_sales",
+        name: "Form_sales",
+        component: () => import("@/views/form/form_sales"),
+        meta: { title: "销售预测", icon: "el-icon-s-fold" }
+      },
+      {
+        path: "form_performance",
+        name: "Form_performance",
+        component: () => import("@/views/form/form_performance"),
+        meta: { title: "业绩⽬标", icon: "form" }
+      },
+      {
+        path: "form_repayment",
+        name: "Form_repayment",
+        component: () => import("@/views/form/form_repayment"),
+        meta: { title: "回款计划", icon: "dashboard" }
+      },
+      {
+        path: "form_contract",
+        name: "Form_contract",
+        component: () => import("@/views/form/form_contract"),
+        meta: { title: "合同汇总", icon: "el-icon-s-fold" }
+      }
+    ]
+  },
   // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
-]
+  { path: "*", redirect: "/404", hidden: true }
+];
 
-const createRouter = () => new Router({
-  // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes
-})
 
-const router = createRouter()
+const createRouter = () =>
+  new Router({
+    // mode: 'history', // require service support
+    scrollBehavior: () => ({ y: 0 }),
+    routes: constantRoutes
+  });
+
+const router = createRouter();
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
-  const newRouter = createRouter()
-  router.matcher = newRouter.matcher // reset router
+  const newRouter = createRouter();
+  router.matcher = newRouter.matcher; // reset router
 }
 
-export default router
+export default router;

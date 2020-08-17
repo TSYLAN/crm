@@ -27,11 +27,21 @@
     </div>
     <div class="contract_value">
       <p>
-        回款金额排行（按实际回款金额）
+        签约合同数:
+        <span>0</span>个;
       </p>
-    </div>
-    <div class="contract_echarts">
-      <div id="main" style="width: 100%;height:400px;"></div>
+      <p>
+        签约合同金额：
+        <span>0.00</span>元;
+      </p>
+      <p>
+        回款金额：
+        <span>0.00</span>元;
+      </p>
+      <p>
+        未收款金额：
+        <span>0.00</span>元;
+      </p>
     </div>
     <div class="contract_data">
       <el-table :data="tableData" border style="width: 100%" :row-class-name="tableRowClassName">
@@ -109,42 +119,14 @@ export default {
       {
         return 'warning-row'
       }
-    },
-    getperformance(){
-      var myChart = this.$echarts.init(document.getElementById('main'));
-
-        // 指定图表的配置项和数据
-        var option = {
-            title: {
-                
-            },
-            tooltip: {},
-            legend: {
-                data:['销量']
-            },
-            xAxis: {
-                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-            },
-            yAxis: {},
-            series: [{
-                name: '销量',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
-            }]
-        };
-
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
     }
   },
-  mounted(){
-    this.getperformance();
-  }
 };
 </script>
 
 <style lang="scss">
 .contract {
+  overflow-y: scroll;
   // width: calc(100vw - 250px);
   height: calc(100vh - 100px);
   border: 1px solid #e6e6e6;
@@ -152,7 +134,6 @@ export default {
   margin-top: 20px;
   margin-left: 20px;
   margin-right: 20px;
-  overflow: scroll;
   .contract_input {
     margin-top: 10px;
     .el-cascader {
@@ -177,8 +158,5 @@ export default {
 .el-table .warning-row {
     background: #fafafa;
   }
-.contract_echarts{
-  margin: 0 20px 0 20px;
-}
 
 </style>
