@@ -7,7 +7,7 @@
       </div>
       <el-button type="primary">新建产品</el-button>
     </div>
-    
+
     <el-table
       :data="tableData"
       stripe
@@ -15,7 +15,7 @@
       :default-sort="{prop: 'name', order: 'payment_date'}"
       ref="multipleTable"
     >
-      <el-table-column type="selection" width="55" ></el-table-column>
+      <el-table-column type="selection" width="55"></el-table-column>
       <el-table-column sortable prop="contract_num" label="合同编号" width="140" fixed="left"></el-table-column>
       <el-table-column sortable prop="contract_name" label="合同名称" width="140"></el-table-column>
       <el-table-column sortable prop="client_name" label="客户名称" width="140"></el-table-column>
@@ -51,6 +51,11 @@
 </template>
 
 <script>
+import { getproductList } from "@/api/product";
+import { getproductadd } from "@/api/product";
+
+// import { getformbiTimes } from "@/api/form";
+// import { getformsearch } from "@/api/form";
 export default {
   data() {
     return {
@@ -68,11 +73,11 @@ export default {
           company_signatory: "--",
           remark: "--",
           creator: "admin",
-          update_time:"2019-05-10 18:43:41",
-          create_time:"2019-05-10 18:43:41",
-          principal:"悟空",
+          update_time: "2019-05-10 18:43:41",
+          create_time: "2019-05-10 18:43:41",
+          principal: "悟空",
         },
-          {
+        {
           contract_num: "856152211",
           contract_name: "线路升级",
           client_name: "郑州金源公司",
@@ -85,11 +90,11 @@ export default {
           company_signatory: "--",
           remark: "--",
           creator: "admin",
-          update_time:"2019-05-10 18:43:41",
-          create_time:"2019-05-10 18:43:41",
-          principal:"悟空",
+          update_time: "2019-05-10 18:43:41",
+          create_time: "2019-05-10 18:43:41",
+          principal: "悟空",
         },
-          {
+        {
           contract_num: "856152211",
           contract_name: "线路升级",
           client_name: "郑州金源公司",
@@ -102,11 +107,11 @@ export default {
           company_signatory: "--",
           remark: "--",
           creator: "admin",
-          update_time:"2019-05-10 18:43:41",
-          create_time:"2019-05-10 18:43:41",
-          principal:"悟空",
+          update_time: "2019-05-10 18:43:41",
+          create_time: "2019-05-10 18:43:41",
+          principal: "悟空",
         },
-          {
+        {
           contract_num: "856152211",
           contract_name: "线路升级",
           client_name: "郑州金源公司",
@@ -119,11 +124,11 @@ export default {
           company_signatory: "--",
           remark: "--",
           creator: "admin",
-          update_time:"2019-05-10 18:43:41",
-          create_time:"2019-05-10 18:43:41",
-          principal:"悟空",
+          update_time: "2019-05-10 18:43:41",
+          create_time: "2019-05-10 18:43:41",
+          principal: "悟空",
         },
-          {
+        {
           contract_num: "856152211",
           contract_name: "线路升级",
           client_name: "郑州金源公司",
@@ -136,11 +141,11 @@ export default {
           company_signatory: "--",
           remark: "--",
           creator: "admin",
-          update_time:"2019-05-10 18:43:41",
-          create_time:"2019-05-10 18:43:41",
-          principal:"悟空",
+          update_time: "2019-05-10 18:43:41",
+          create_time: "2019-05-10 18:43:41",
+          principal: "悟空",
         },
-          {
+        {
           contract_num: "856152211",
           contract_name: "线路升级",
           client_name: "郑州金源公司",
@@ -153,11 +158,11 @@ export default {
           company_signatory: "--",
           remark: "--",
           creator: "admin",
-          update_time:"2019-05-10 18:43:41",
-          create_time:"2019-05-10 18:43:41",
-          principal:"悟空",
+          update_time: "2019-05-10 18:43:41",
+          create_time: "2019-05-10 18:43:41",
+          principal: "悟空",
         },
-          {
+        {
           contract_num: "856152211",
           contract_name: "线路升级",
           client_name: "郑州金源公司",
@@ -170,11 +175,11 @@ export default {
           company_signatory: "--",
           remark: "--",
           creator: "admin",
-          update_time:"2019-05-10 18:43:41",
-          create_time:"2019-05-10 18:43:41",
-          principal:"悟空",
+          update_time: "2019-05-10 18:43:41",
+          create_time: "2019-05-10 18:43:41",
+          principal: "悟空",
         },
-          {
+        {
           contract_num: "856152211",
           contract_name: "线路升级",
           client_name: "郑州金源公司",
@@ -187,11 +192,11 @@ export default {
           company_signatory: "--",
           remark: "--",
           creator: "admin",
-          update_time:"2019-05-10 18:43:41",
-          create_time:"2019-05-10 18:43:41",
-          principal:"悟空",
+          update_time: "2019-05-10 18:43:41",
+          create_time: "2019-05-10 18:43:41",
+          principal: "悟空",
         },
-          {
+        {
           contract_num: "856152211",
           contract_name: "线路升级",
           client_name: "郑州金源公司",
@@ -204,11 +209,11 @@ export default {
           company_signatory: "--",
           remark: "--",
           creator: "admin",
-          update_time:"2019-05-10 18:43:41",
-          create_time:"2019-05-10 18:43:41",
-          principal:"悟空",
+          update_time: "2019-05-10 18:43:41",
+          create_time: "2019-05-10 18:43:41",
+          principal: "悟空",
         },
-          {
+        {
           contract_num: "856152211",
           contract_name: "线路升级",
           client_name: "郑州金源公司",
@@ -221,16 +226,14 @@ export default {
           company_signatory: "--",
           remark: "--",
           creator: "admin",
-          update_time:"2019-05-10 18:43:41",
-          create_time:"2019-05-10 18:43:41",
-          principal:"悟空",
+          update_time: "2019-05-10 18:43:41",
+          create_time: "2019-05-10 18:43:41",
+          principal: "悟空",
         },
-
-        
       ],
       screenWidth: document.body.clientWidth, // 屏幕尺寸
       input2: "",
-      multipleTable:[]
+      multipleTable: [],
     };
   },
   methods: {
@@ -266,13 +269,51 @@ export default {
   },
   created() {
     this.getWidth();
-    console.log(this.screenWidth);
+    //添加产品数据
+    getproductadd({
+      createTime: "2020-08-19T07:43:35.309Z",
+      id: 0,
+      pageNum: 0,
+      pageSize: 0,
+      productDescribe: "string",
+      productName: "string",
+      productStatus: 0,
+      productTypeId: 0,
+      productTypeName: "string",
+      remark: "string",
+      updateTime: "2020-08-19T07:43:35.309Z",
+    }) .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    //分页查询产品列表
+    getproductList({
+      createTime: "2020-08-19T07:43:46.152Z",
+      id: 0,
+      pageNum: 0,
+      pageSize: 0,
+      productDescribe: "string",
+      productName: "string",
+      productStatus: 0,
+      productTypeId: 0,
+      productTypeName: "string",
+      remark: "string",
+      updateTime: "2020-08-19T07:43:46.152Z",
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.product_list{
+.product_list {
   margin: 0 20px 0 20px;
 }
 .payback {

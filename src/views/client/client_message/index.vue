@@ -5,7 +5,7 @@
       <div>
         <el-input placeholder="请输入合同编号" prefix-icon="el-icon-search" v-model="input2"></el-input>
       </div>
-      <el-button type="primary">新建客户</el-button>
+      <el-button type="primary" @click="client_add_push">新建客户</el-button>
     </div>
     
     <el-table
@@ -14,6 +14,7 @@
       style="width: 100%"
       :default-sort="{prop: 'name', order: 'payment_date'}"
       ref="multipleTable"
+      border
     >
       <el-table-column type="selection" width="55" ></el-table-column>
       <el-table-column sortable prop="contract_num" label="合同编号" width="140" fixed="left"></el-table-column>
@@ -242,6 +243,10 @@ export default {
           that.screenWidth = window.screenWidth;
         })();
       };
+    },
+    //新建跳转
+    client_add_push(){
+      this.$router.push('/client/client_add')
     },
     // 审核方法
     handleClick(index, row) {},

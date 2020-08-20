@@ -205,7 +205,7 @@ export default {
   margin-top: 20px;
   margin-left: 20px;
   margin-right: 20px;
-  overflow: scroll;
+  overflow: auto;
   .contract_input {
     margin-top: 10px;
     .el-cascader {

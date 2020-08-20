@@ -41,6 +41,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.from_followup{
+  margin: 20px;
+  overflow: auto;
+}
 .remind{
   margin: 20px;
 }

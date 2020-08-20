@@ -738,7 +738,7 @@ h3 {
   top: 0;
   left: 0;
   background: rgb(245, 246, 249);
-  z-index: 9999;
+  z-index: 1002;
   overflow-x: scroll;
 }
 .announcement_form_content {

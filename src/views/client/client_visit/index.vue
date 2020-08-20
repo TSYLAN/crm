@@ -14,6 +14,7 @@
       style="width: 100%"
       :default-sort="{prop: 'name', order: 'payment_date'}"
       ref="multipleTable"
+      border
     >
       <el-table-column type="selection" width="55" ></el-table-column>
       <el-table-column sortable prop="contract_num" label="合同编号" width="140" fixed="left"></el-table-column>

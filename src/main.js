@@ -11,10 +11,11 @@ import '@/styles/index.scss' // global css
 import App from './App'
 import store from './store'
 import router from './router'
-
 import '@/icons' // icon
 import '@/permission' // permission control
 import echarts from 'echarts'
+import axios from 'axios'
+Vue.prototype.$http=axios;
 Vue.prototype.$echarts = echarts
 
 /**
@@ -43,3 +44,5 @@ new Vue({
   store,
   render: h => h(App)
 })
+
+

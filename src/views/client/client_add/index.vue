@@ -37,10 +37,8 @@
             ></el-input>
           </el-col>
         </el-row>
-        <el-row class="btn">
-           <el-button type="primary">提交</el-button>
+           <el-button type="primary"> 提交</el-button>
            <!-- <el-button @click="close" > 取消</el-button> -->
-        </el-row>
       </div>
     </div>
 </template>
@@ -647,6 +645,7 @@ h3{
   background: #fff;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   padding: 20px;
+  position: relative;
 }
 .el-input,
 .el-cascader {
@@ -661,6 +660,11 @@ h3{
   text-align: right;
   position: fixed;
   bottom: 30px;
+  right: 50px;
+}
+.el-button{
+  position: absolute;
+  bottom: 50px;
   right: 50px;
 }
 </style>

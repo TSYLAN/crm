@@ -77,6 +77,7 @@
             size="small"
           ></el-cascader>
           <el-button type="primary" size="small" @click="dialogTableVisible = true ">新建审批</el-button>
+          <!-- 弹框 -->
           <el-dialog title="审批类型" :visible.sync="dialogTableVisible" class="approval_messagebox">
             <span>请选择您的审批类型（管理后台可自定义配置审批类型）</span>
             <ul>
@@ -85,6 +86,7 @@
               </li>
             </ul>
           </el-dialog>
+          <!-- 弹框 -->
         </div>
       </div>
     </div>
@@ -267,6 +269,7 @@ li {
 .approval_messagebox {
   margin: 0 auto;
   width: 1100px;
+  padding-bottom:50px
   span {
     margin-bottom: 10px;
   }

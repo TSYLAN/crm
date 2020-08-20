@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="service_contract">
     <div class="payback">
       <h3 v-if="screenWidth>=800?true:false">合同管理</h3>
       <div>
@@ -14,6 +14,7 @@
       style="width: 100%"
       :default-sort="{prop: 'name', order: 'payment_date'}"
       ref="multipleTable"
+      border
     >
       <el-table-column type="selection" width="55" ></el-table-column>
       <el-table-column sortable prop="contract_num" label="合同编号" width="140" fixed="left"></el-table-column>
@@ -50,6 +51,7 @@
 </template>
 
 <script>
+import { login } from "@/api/user";
 export default {
   data() {
     return {
@@ -262,8 +264,23 @@ export default {
     //   {
     //       console.log(row,index)
     //   }
+
   },
   created() {
+    // login({
+    //   password: '123456',
+    //   username: '18370884383'
+    // }).then(res => {
+    //   console.log(res);
+    //   console.log(res.result)
+    // }).catch(err => {
+    //   console.log(err);
+    // });
+    // getcode({}).then(res => {
+    //   console.log(res);
+    // }).catch(err => {
+    //   console.log(err);
+    // });
     this.getWidth();
     console.log(this.screenWidth);
   },
@@ -271,6 +288,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.service_contract{
+  margin: 0 20px;
+}
 .payback {
   height: 70px;
   display: flex;

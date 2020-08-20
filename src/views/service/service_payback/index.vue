@@ -1,19 +1,20 @@
 <template>
-  <div>
+  <div class="service_payback">
     <div class="payback">
       <h3 v-if="screenWidth>=800?true:false">回款管理</h3>
       <el-input placeholder="请输入回款编号" prefix-icon="el-icon-search" v-model="input2"></el-input>
       <el-button type="primary">新建回款</el-button>
     </div>
-    
+
     <el-table
       :data="tableData"
       stripe
       style="width: 100%"
       :default-sort="{prop: 'name', order: 'payment_date'}"
       ref="multipleTable"
+      border
     >
-      <el-table-column type="selection" width="55" ></el-table-column>
+      <el-table-column type="selection" width="55"></el-table-column>
       <el-table-column sortable prop="collection_num" label="回款编号" width="140" fixed="left"></el-table-column>
       <el-table-column sortable prop="client_name" label="客户名称" width="140"></el-table-column>
       <el-table-column sortable prop="contract_num" label="合同编号" width="140"></el-table-column>
@@ -133,7 +134,7 @@ export default {
           principal: "admin",
           payment_method: "支付宝",
         },
-         {
+        {
           collection_num: "544133655441",
           client_name: "光华置业",
           contract_num: "10010",
@@ -147,7 +148,7 @@ export default {
           principal: "admin",
           payment_method: "支付宝",
         },
-         {
+        {
           collection_num: "544133655441",
           client_name: "光华置业",
           contract_num: "10010",
@@ -161,7 +162,7 @@ export default {
           principal: "admin",
           payment_method: "支付宝",
         },
-         {
+        {
           collection_num: "544133655441",
           client_name: "光华置业",
           contract_num: "10010",
@@ -175,11 +176,10 @@ export default {
           principal: "admin",
           payment_method: "支付宝",
         },
-        
       ],
       screenWidth: document.body.clientWidth, // 屏幕尺寸
       input2: "",
-      multipleTable:[]
+      multipleTable: [],
     };
   },
   methods: {
@@ -221,12 +221,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.service_payback {
+  margin: 0 20px;
+}
 .payback {
   height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 20px;
+
   h3 {
     font-weight: 400;
   }
@@ -237,4 +240,7 @@ export default {
 .el-table {
   margin: 0 auto;
 }
+
+
+
 </style>

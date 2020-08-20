@@ -1,33 +1,71 @@
 <template>
   <div class="presentations">
+    <el-select v-model="value" placeholder="请选择" style="margin:10px 20px 0 20px">
+      <el-option v-for="item in cities" :key="item.value" :label="item.label" :value="item.value">
+        <span style="float: left">{{ item.label }}</span>
+      </el-option>
+    </el-select>
+    <el-date-picker
+      v-model="value"
+      type="daterange"
+      range-separator="至"
+      start-placeholder="开始日期"
+      end-placeholder="结束日期"
+    ></el-date-picker>
     <el-row>
-      <el-col :lg="11" :md="22">
+      <el-col :lg="11" :md="22" :sm="22">
         <div class="presentations_first">
           <h3>成交情况</h3>
           <div id="main" style="width: 100%;height:90%;"></div>
         </div>
       </el-col>
-      <el-col :lg="11" :md="22">
+      <el-col :lg="11" :md="22" :sm="22">
         <div class="presentations_second">
           <h3>销售预测</h3>
           <div>
-            <div class="forecast_order">
-              <h3>预测订单数</h3>
-              <h3>{{forecast_order_value}}</h3>
+            <!-- <div class="forecast_order">
+            <h3>预测订单数</h3>
+            <h3>{{forecast_order_value}}</h3>
+            <countTo :startVal='startVal' :endVal='forecast_order_value' :duration='3000'></countTo>
             </div>
             <div class="forecast_turnover">
-              <h3>预测成交⾦额</h3>
-              <h3>{{forecast_turnover_value}}￥</h3>
-            </div>
+            <h3>预测成交⾦额</h3>
+            <h3>{{forecast_turnover_value}}￥</h3>
+            <countTo :startVal='startVal' :endVal='forecast_turnover_value' :duration='3000'></countTo>
+            </div>-->
+
+            <line-chart :chart-data="lineChartData" style="width:90%; position:absolute; left:0px" />
           </div>
         </div>
       </el-col>
     </el-row>
-    <el-row :gutter="20">
-      <el-col :lg="22" :md="22">
+    <el-row>
+      <el-col :lg="11" :md="22">
         <div class="presentations_three">
+          <h3>工作提醒</h3>
+          <el-table :data="tableData" border style="width: 100%">
+            <el-table-column prop="date" label="日期" width="180"></el-table-column>
+            <el-table-column prop="name" label="合同到期" width="180"></el-table-column>
+            <el-table-column prop="client_add" label="新增客户跟进"></el-table-column>
+            <el-table-column prop="client_drop" label="客户拜访"></el-table-column>
+          </el-table>
+        </div>
+      </el-col>
+      <el-col :lg="11" :md="22">
+        <div class="presentations_four">
           <h3>新增客户情况</h3>
-          <div id="presentations" style="width: 100%;height:90%"></div>
+          <div class="presentations_client">
+            <div class="forecast_order">
+              <h3>预测订单数</h3>
+              <h3>{{forecast_order_value}}</h3>
+              <countTo :startVal="startVal" :endVal="forecast_order_value" :duration="3000"></countTo>
+            </div>
+            <div class="forecast_turnover">
+              <h3>预测成交⾦额</h3>
+              <h3>{{forecast_turnover_value}}￥</h3>
+              <countTo :startVal="startVal" :endVal="forecast_turnover_value" :duration="3000"></countTo>
+            </div>
+          </div>
         </div>
       </el-col>
     </el-row>
@@ -35,13 +73,76 @@
 </template>
 
 <script>
+import countTo from "vue-count-to";
+import LineChart from "@/components/Charts/LineChart";
+import resize from "@/components/Charts/mixins/resize";
+const lineChartData = {
+  newVisitis: {
+    expectedData: [100, 120, 161, 134, 105, 160, 165],
+    actualData: [120, 82, 91, 154, 162, 140, 145],
+  },
+};
 export default {
+  mixins: [resize],
   data() {
     return {
-      forecast_order_value: "65",
-      forecast_turnover_value: "135000",
+      cities: [
+        {
+          value: "Beijing",
+          label: "北京",
+        },
+        {
+          value: "Shanghai",
+          label: "上海",
+        },
+        {
+          value: "Nanjing",
+          label: "南京",
+        },
+        {
+          value: "Chengdu",
+          label: "成都",
+        },
+        {
+          value: "Shenzhen",
+          label: "深圳",
+        },
+        {
+          value: "Guangzhou",
+          label: "广州",
+        },
+      ],
+      value: "",
+      startVal: 0,
+      endVal: 2017,
+      forecast_order_value: 65,
+      forecast_turnover_value: 135000,
+      lineChartData: lineChartData.newVisitis,
+      tableData: [
+        {
+          date: "2016-05-02",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1518 弄",
+        },
+        {
+          date: "2016-05-04",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1517 弄",
+        },
+        {
+          date: "2016-05-01",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1519 弄",
+        },
+        {
+          date: "2016-05-03",
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1516 弄",
+        },
+      ],
     };
   },
+  components: { countTo, LineChart },
   methods: {
     drawChart() {
       // 基于准备好的dom，初始化echarts实例
@@ -71,7 +172,7 @@ export default {
         yAxis: {},
         // Declare several bar series, each will be mapped
         // to a column of dataset.source by default.
-        series: [{ type: "bar" }, { type: "line" }],
+        series: [{ type: "bar" }, { type: "line", color: "#3888fa" }],
       };
 
       // 使用刚指定的配置项和数据显示图表。
@@ -87,7 +188,7 @@ export default {
           axisPointer: {
             type: "cross",
             crossStyle: {
-              color: "#999",
+              color: "#3888fa",
             },
           },
         },
@@ -121,6 +222,7 @@ export default {
             ],
             axisPointer: {
               type: "shadow",
+              color: "#3888fa",
             },
           },
         ],
@@ -134,7 +236,7 @@ export default {
             axisLabel: {
               formatter: "{value} ",
             },
-          }
+          },
         ],
         series: [
           {
@@ -154,6 +256,7 @@ export default {
               6.4,
               3.3,
             ],
+            color: "#3888fa",
           },
           {
             name: "客户拜访",
@@ -179,8 +282,10 @@ export default {
     },
   },
   mounted() {
-    this.drawChart();
-    this.presentationsthree();
+    this.$nextTick(() => {
+      this.drawChart();
+      this.presentationsthree();
+    });
   },
 };
 </script>
@@ -207,7 +312,8 @@ body {
     div {
       margin: 0 auto;
       display: flex;
-      margin-top: 30px;
+      position: relative;
+      // margin-top: 30px;
     }
   }
   .presentations_three {
@@ -217,9 +323,23 @@ body {
     margin-top: 20px;
     border: 1px solid rgb(230, 230, 230);
     font-size: 14px;
+    padding: 0 20px;
+  }
+  .presentations_four {
+    background: #fff;
+    margin-left: 20px;
+    height: 400px;
+    margin-top: 20px;
+    border: 1px solid rgb(230, 230, 230);
+    font-size: 14px;
     padding-left: 20px;
+    .presentations_client {
+      display: flex;
+      justify-content: space-around;
+    }
   }
 }
+// 渐变
 .forecast_order,
 .forecast_turnover {
   width: 250px;
@@ -230,8 +350,20 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  animation: bounce-in 1s;
 }
 .forecast_turnover {
   background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

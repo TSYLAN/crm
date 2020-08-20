@@ -41,6 +41,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.from_sales{
+  margin: 20px;
+}
 .remind{
   margin: 20px;
 }

@@ -35,7 +35,12 @@ a:focus,
 a:active {
   outline: none;
 }
-
+ul{
+  padding:0
+}
+li{
+  list-style: none;
+}
 a,
 a:focus,
 a:hover {
@@ -62,4 +67,9 @@ div:focus {
 // main-container global css
 .app-container {
   padding: 20px;
+}
+.announcement_title::before {
+  content: "*";
+  color: #f56c6c;
+  margin-right: 4px;
 }

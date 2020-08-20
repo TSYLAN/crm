@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 
 Vue.use(Router);
+import {getpermsList} from "@/api/user";
 
 /* Layout */
 import Layout from "@/layout";
@@ -88,6 +89,32 @@ export const constantRoutes = [
       }
     ]
   },
+  // 员工与部门管理
+  {
+    path: '/management',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/management/index'),
+        name: 'management',
+        meta: { title: '员工与部门管理', icon: 'el-icon-s-custom' }
+      }
+    ]
+  },
+  //员角色权限控制
+    {
+      path: '/rolepermissions',
+      component: Layout,
+      children: [
+        {
+          path: 'index',
+          component: () => import('@/views/rolepermissions/index'),
+          name: 'rolepermissions',
+          meta: { title: '角色权限控制', icon: 'el-icon-s-tools' }
+        }
+      ]
+    },
   // 客户管理
   {
     path: "/client",
@@ -200,14 +227,26 @@ export const constantRoutes = [
   { path: "*", redirect: "/404", hidden: true }
 ];
 
+  
+export let  asyncRoutes= []
 
+getpermsList({
+}).then(res => {
+  console.log(res)
+  asyncRoutes=res.result
+  console.log(asyncRoutes)
+}).catch(err => {
+  console.log(err);
+});
+//  console.log(asyncRoutes)
+ 
 const createRouter = () =>
   new Router({
     // mode: 'history', // require service support
     scrollBehavior: () => ({ y: 0 }),
     routes: constantRoutes
   });
-
+  // router.beforeEach(to,next,()=>{})
 const router = createRouter();
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
